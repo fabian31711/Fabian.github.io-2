@@ -1610,3 +1610,46 @@ a:focus-visible {
   opacity: 1 !important;
   visibility: visible !important;
 }
+
+```css
+/* ==========================================
+   MOBILE HERO — POSITION FOTO & OIKAWA
+========================================== */
+
+@media (max-width: 720px) {
+
+  /* Foto profil: pindah ke area kosong merah */
+  .hero-profile-photo {
+    top: 52%;
+    right: 17%;
+    width: 100px;
+    z-index: 5;
+    transform: translateY(-50%) scale(.96);
+  }
+
+  .hero-profile-photo.is-visible {
+    transform: translateY(-50%) scale(1);
+  }
+
+  /* Tulisan Jepang: vertikal di kanan foto */
+  .hero-japanese {
+    position: absolute;
+    top: 59%;
+    right: 5%;
+    bottom: auto;
+    z-index: 6;
+
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    white-space: nowrap;
+
+    font-size: 21px;
+    line-height: 1.5;
+    letter-spacing: 2px;
+
+    transform: none;
+  }
+
+  /* Pertahankan warna dan kecerahan background */
+}
+```
