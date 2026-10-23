@@ -311,3 +311,108 @@
   </footer>
 </body>
 </html>
+
+
+/* ==========================================
+   DEVICE MODE — HP & LAPTOP
+========================================== */
+
+/* Mode HP yang dipilih dari halaman device */
+html[data-device="mobile"] .section-wrap {
+  width: 88%;
+}
+
+html[data-device="mobile"] .topbar {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+html[data-device="mobile"] .intro-layout {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+html[data-device="mobile"] .profile-facts {
+  grid-template-columns: 1fr;
+}
+
+html[data-device="mobile"] .hobby-grid {
+  grid-template-columns: 1fr;
+}
+
+html[data-device="mobile"] .hobbies-heading {
+  display: block;
+}
+
+html[data-device="mobile"] .hero {
+  min-height: 680px;
+  padding-left: 7%;
+  padding-right: 7%;
+}
+
+html[data-device="mobile"] .hero h1 {
+  font-size: clamp(36px, 9vw, 55px);
+  letter-spacing: -2px;
+}
+
+html[data-device="mobile"] .hero-profile-photo {
+  right: 8%;
+  width: 125px;
+}
+
+html[data-device="mobile"] .hero-japanese {
+  right: 2%;
+  font-size: 23px;
+}
+
+/* Mode laptop */
+html[data-device="desktop"] .section-wrap {
+  width: min(1180px, 84%);
+}
+
+html[data-device="desktop"] .intro-layout {
+  grid-template-columns: 1fr 1fr;
+  gap: 8%;
+}
+
+html[data-device="desktop"] .profile-facts {
+  grid-template-columns: 1fr 1fr;
+}
+
+html[data-device="desktop"] .hobby-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+html[data-device="desktop"] .hobbies-heading {
+  display: flex;
+}
+
+/* Jangan biarkan mode laptop merusak layout pada layar HP */
+@media (max-width: 720px) {
+  html[data-device="desktop"] .navigation {
+    position: absolute;
+    top: 68px;
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+  }
+
+  html[data-device="desktop"] .navigation.open {
+    display: flex;
+  }
+
+  html[data-device="desktop"] .menu-toggle {
+    display: grid;
+  }
+
+  html[data-device="desktop"] .intro-layout,
+  html[data-device="desktop"] .profile-facts,
+  html[data-device="desktop"] .hobby-grid {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-device="desktop"] .hobbies-heading {
+    display: block;
+  }
+}
