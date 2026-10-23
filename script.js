@@ -13,13 +13,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinks = document.querySelectorAll(".nav-link");
   const revealElements = document.querySelectorAll(".reveal");
   const yearElement = document.getElementById("year");
+  const profilePhoto = document.getElementById("profilePhoto");
 
-  // 1. UPDATE COPYRIGHT YEAR
+  // 1. COPYRIGHT YEAR
   if (yearElement) {
     yearElement.textContent = new Date().getFullYear();
   }
 
-  // 2. DARK MODE TOGGLE
+  // 2. DEVICE MODE
+  // Membaca pilihan HP atau laptop dari device.html.
+  const savedMode = sessionStorage.getItem("fabianDeviceMode");
+
+  if (savedMode === "mobile" || savedMode === "desktop") {
+    document.documentElement.dataset.device = savedMode;
+  }
+
+  // 3. DARK MODE
   if (themeToggle) {
     themeToggle.addEventListener("click", () => {
       const isDark = body.classList.toggle("dark-theme");
@@ -35,7 +44,6 @@ document.addEventListener("DOMContentLoaded", () => {
         isDark ? "Tema terang" : "Tema gelap"
       );
 
-      // Switch between sun and moon icons
       if (icon) {
         icon.innerHTML = isDark
           ? `
@@ -49,20 +57,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 3. MOBILE NAVIGATION
+  // 4. MOBILE NAVIGATION
   if (menuToggle && navigation) {
     menuToggle.addEventListener("click", () => {
       const isOpen = navigation.classList.toggle("open");
 
       menuToggle.setAttribute("aria-expanded", String(isOpen));
-
       menuToggle.setAttribute(
         "aria-label",
         isOpen ? "Tutup navigasi" : "Buka navigasi"
       );
     });
 
-    // Close the menu when a navigation link is selected
     navLinks.forEach((link) => {
       link.addEventListener("click", () => {
         navigation.classList.remove("open");
@@ -71,7 +77,6 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Close the menu with Escape
     document.addEventListener("keydown", (event) => {
       if (event.key === "Escape") {
         navigation.classList.remove("open");
@@ -81,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // 4. REVEAL ELEMENTS ON SCROLL
+  // 5. REVEAL ELEMENTS ON SCROLL
   const reduceMotion = window.matchMedia(
     "(prefers-reduced-motion: reduce)"
   ).matches;
@@ -103,19 +108,16 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
     revealElements.forEach((element, index) => {
-      element.style.transitionDelay =
-        `${(index % 3) * 80}ms`;
-
+      element.style.transitionDelay = `${(index % 3) * 80}ms`;
       revealObserver.observe(element);
     });
   } else {
-    // Fallback for browsers without IntersectionObserver
     revealElements.forEach((element) => {
       element.classList.add("visible");
     });
   }
 
-  // 5. ACTIVE NAVIGATION WHILE SCROLLING
+  // 6. ACTIVE NAVIGATION WHILE SCROLLING
   const sections = document.querySelectorAll(
     "#home, #about, #hobbies, #inspiration"
   );
@@ -150,19 +152,16 @@ document.addEventListener("DOMContentLoaded", () => {
       sectionObserver.observe(section);
     });
   }
-});
-  // 6. FOTO PROFIL FADE IN / FADE OUT SAAT SCROLL
-  const profilePhoto = document.getElementById("profilePhoto");
 
+  // 7. PROFILE PHOTO FADE IN / FADE OUT
   if (profilePhoto && "IntersectionObserver" in window) {
     const photoObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            profilePhoto.classList.add("is-visible");
-          } else {
-            profilePhoto.classList.remove("is-visible");
-          }
+          profilePhoto.classList.toggle(
+            "is-visible",
+            entry.isIntersecting
+          );
         });
       },
       {
@@ -174,3 +173,4 @@ document.addEventListener("DOMContentLoaded", () => {
   } else if (profilePhoto) {
     profilePhoto.classList.add("is-visible");
   }
+});
