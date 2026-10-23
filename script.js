@@ -169,6 +169,50 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     );
 
+     
+/* =================================
+   FLOATING MUSIC PLAYER
+================================= */
+
+(() => {
+  const player = document.getElementById("musicPlayer");
+  const toggle = document.getElementById("musicToggle");
+  const expand = document.getElementById("musicExpand");
+  const frame = document.getElementById("musicFrame");
+
+  if (!player || !toggle || !expand || !frame) return;
+
+  toggle.addEventListener("click", () => {
+    const isExpanded = player.classList.toggle("is-expanded");
+
+    expand.textContent = isExpanded ? "−" : "＋";
+
+    if (isExpanded && !frame.src.includes("autoplay=1")) {
+      frame.src =
+        "https://www.youtube.com/embed/GNtIvGrqAZE?playsinline=1&autoplay=1";
+    }
+
+    if (!isExpanded) {
+      frame.src = "https://www.youtube.com/embed/GNtIvGrqAZE?playsinline=1";
+    }
+  });
+
+  expand.addEventListener("click", () => {
+    const isExpanded = player.classList.toggle("is-expanded");
+
+    expand.textContent = isExpanded ? "−" : "＋";
+
+    if (isExpanded && !frame.src.includes("autoplay=1")) {
+      frame.src =
+        "https://www.youtube.com/embed/GNtIvGrqAZE?playsinline=1&autoplay=1";
+    }
+
+    if (!isExpanded) {
+      frame.src = "https://www.youtube.com/embed/GNtIvGrqAZE?playsinline=1";
+    }
+  });
+})();
+
     photoObserver.observe(profilePhoto);
   } else if (profilePhoto) {
     profilePhoto.classList.add("is-visible");
