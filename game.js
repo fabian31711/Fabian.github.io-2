@@ -1189,7 +1189,7 @@
 
   // KEMBALI KE WEB PROFIL UTAMA
   function backToMainProfile() {
-    window.location.href = "../index.html";
+    window.location.href = "./index.html";
   }
 
   $("zuno-back-menu").addEventListener("click", backToMainProfile);
