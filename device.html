@@ -1,0 +1,90 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#102b4c">
+  <title>Pilih Perangkat — Fabian</title>
+  <link rel="stylesheet" href="device.css">
+</head>
+<body>
+  <main class="device-page">
+    <header class="device-brand">
+      <span class="brand-mark">F.</span>
+      <span>fabian<span class="brand-dot">.</span></span>
+    </header>
+
+    <section class="device-content">
+      <p class="eyebrow">PERSONAL PROFILE / 2026</p>
+      <h1>Sebelum kita<br><span>mulai.</span></h1>
+      <p class="intro">
+        Anda menggunakan perangkat apa?
+        Pilih pengalaman yang paling sesuai untuk Anda.
+      </p>
+
+      <div class="device-options">
+        <button class="device-card" type="button" data-device="mobile">
+          <span class="device-icon" aria-hidden="true">▯</span>
+          <span class="device-name">Mobile</span>
+          <span class="device-desc">HP / Smartphone</span>
+          <span class="device-arrow">↗</span>
+        </button>
+
+        <button class="device-card" type="button" data-device="desktop">
+          <span class="device-icon" aria-hidden="true">▱</span>
+          <span class="device-name">Desktop</span>
+          <span class="device-desc">Laptop / Chromebook / PC</span>
+          <span class="device-arrow">↗</span>
+        </button>
+      </div>
+
+      <p class="detected" id="detectedDevice">
+        Mendeteksi perangkat...
+      </p>
+      <button class="auto-button" id="autoContinue" type="button">
+        Lanjut dengan perangkat terdeteksi →
+      </button>
+    </section>
+
+    <footer class="device-footer">
+      MADE WITH INTENTION, NOT PERFECTION.
+    </footer>
+  </main>
+
+  <script>
+    const mobileQuery = window.matchMedia("(max-width: 700px)");
+    const detectedDevice = document.getElementById("detectedDevice");
+    const autoContinue = document.getElementById("autoContinue");
+
+    function getDevice() {
+      return mobileQuery.matches ? "mobile" : "desktop";
+    }
+
+    function updateDetected() {
+      const device = getDevice();
+      detectedDevice.textContent =
+        "Perangkat terdeteksi: " +
+        (device === "mobile" ? "HP / Smartphone" : "Laptop / Chromebook / PC");
+    }
+
+    function enterProfile(device) {
+      sessionStorage.setItem("fabianDeviceMode", device);
+      window.location.href = "./index.html";
+    }
+
+    document.querySelectorAll("[data-device]").forEach(button => {
+      button.addEventListener("click", () => {
+        enterProfile(button.dataset.device);
+      });
+    });
+
+    autoContinue.addEventListener("click", () => {
+      enterProfile(getDevice());
+    });
+
+    updateDetected();
+    mobileQuery.addEventListener("change", updateDetected);
+  </script>
+</body>
+</html>
