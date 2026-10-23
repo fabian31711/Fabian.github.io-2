@@ -246,9 +246,10 @@ a:focus-visible {
 
 .hero-image {
   z-index: -3;
-  background-image: url("img/oikawa.jpg");
+  background-image: url("./Oikawa.jpg");
   background-position: center 36%;
   background-size: cover;
+  background-repeat: no-repeat;
   transform: scale(1.015);
 }
 
