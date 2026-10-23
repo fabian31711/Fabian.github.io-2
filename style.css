@@ -1343,136 +1343,6 @@ a:focus-visible {
   }
 }
 
-
-
-/* ==========================================
-   HERO PHOTO & JAPANESE TEXT — FINAL
-========================================== */
-
-/* Bingkai foto Fabian */
-.hero-profile-photo {
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  right: 12%;
-    width: clamp(115px, 32vw, 155px);
-  aspect-ratio: 3 / 5;
-  overflow: hidden;
-  border: 4px solid rgba(255, 255, 255, 0.95);
-  border-radius: 160px;
-  box-shadow: 0 0 30px rgba(91, 160, 255, 0.55);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(calc(-50% + 25px)) scale(.96);
-  filter: blur(5px);
-  transition:
-    opacity .7s ease,
-    transform .7s ease,
-    filter .7s ease,
-    visibility .7s;
-}
-
-.hero-profile-photo img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center;
-}
-
-.hero-profile-photo.is-visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(-50%) scale(1);
-  filter: blur(0);
-}
-
-/* Tulisan Jepang di sisi kanan foto */
-.hero-japanese {
-  position: absolute;
-  z-index: 4;
-  top: 50%;
-  right: 3%;
-  margin: 0;
-  color: rgba(255, 255, 255, .88);
-  font-family: serif;
-  font-size: clamp(30px, 3.5vw, 48px);
-  line-height: 1.5;
-  writing-mode: vertical-rl;
-  text-orientation: upright;
-  white-space: normal;
-  letter-spacing: 2px;
-  transform: translateY(-50%);
-  pointer-events: none;
-}
-
-.hero-image {
-  filter: brightness(1.25) contrast(1.12) saturate(1.12);
-}
-
-.hero-overlay {
-  opacity: 0.35;
-}
-
-
-/* Tampilan HP — foto tidak menutupi tombol */
-@media (max-width: 720px) {
-  .hero-profile-photo {
-    top: auto;
-    right: 6%;
-    bottom: 90px;
-    width: 100px;
-    aspect-ratio: 3 / 5;
-    transform: none;
-  }
-
-  .hero-profile-photo.is-visible {
-    transform: none;
-  }
-
-  .hero-japanese {
-    top: auto;
-    right: 2%;
-    bottom: 245px;
-    font-size: 20px;
-    line-height: 1.4;
-    transform: none;
-  }
-
-  .hero-buttons {
-    position: relative;
-    z-index: 5;
-    max-width: 100%;
-  }
-}
-
-    top: 155px;
-    right: 8%;
-    width: clamp(160px, 21vw, 260px);
-    transform: translateY(20px) scale(.96);
-  }
-
-  .hero-profile-photo.is-visible {
-    transform: translateY(0) scale(1);
-  }
-
-  .hero-japanese {
-    top: 160px;
-    right: 1%;
-    font-size: 25px;
-    line-height: 1.5;
-    transform: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hero-profile-photo {
-    transition: none;
-  }
-}
-
-
-```css
 /* Link sekolah dan preview website */
 .school-info {
   position: relative;
@@ -1542,9 +1412,7 @@ a:focus-visible {
   pointer-events: auto;
   transform: translateY(0);
 }
-```
 
-```css
 /* Tombol game di hero */
 .hero-buttons {
   display: flex;
@@ -1600,8 +1468,8 @@ a:focus-visible {
     font-size: 11px;
   }
 }
-```
 
+/* Background image path */
 .hero-image {
   background-image: url("./Oikawa.jpg") !important;
   background-position: center center !important;
@@ -1611,75 +1479,105 @@ a:focus-visible {
   visibility: visible !important;
 }
 
-```css
 /* ==========================================
-   MOBILE HERO — POSITION FOTO & OIKAWA
+   FOTO PROFIL & TEKS JEPANG
 ========================================== */
 
-@media (max-width: 720px) {
+/* Desktop */
+.hero-profile-photo {
+  position: absolute;
+  z-index: 3;
+  top: 50%;
+  right: 12%;
+  width: clamp(115px, 21vw, 230px);
+  aspect-ratio: 3 / 5;
+  overflow: hidden;
+  border: 4px solid rgba(255, 255, 255, 0.95);
+  border-radius: 160px;
+  box-shadow: 0 0 30px rgba(91, 160, 255, 0.35);
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%);
+  filter: none;
+}
 
-  /* Foto profil: pindah ke area kosong merah */
-  .hero-profile-photo {
-    top: 52%;
-    right: 17%;
-    width: 100px;
-    z-index: 5;
-    transform: translateY(-50%) scale(.96);
+.hero-profile-photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* Japanese vertical text */
+.hero-japanese {
+  position: absolute;
+  z-index: 4;
+  top: 50%;
+  right: 3%;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.65);
+  font-family: serif;
+  font-size: clamp(30px, 3.5vw, 48px);
+  line-height: 1.5;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  white-space: nowrap;
+  letter-spacing: 2px;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+/* Mobile: place photo and Japanese text in the upper-right area */
+@media (max-width: 720px) {
+  .hero {
+    position: relative;
   }
 
-  .hero-profile-photo.is-visible {
-    transform: translateY(-50%) scale(1);
+  /* Absolute children use the whole hero as their positioning area */
+  .hero-content {
+    position: static !important;
   }
 
-   ```css
-/* ==========================================
-   FIX POSISI FOTO & OIKAWA — MOBILE
-========================================== */
-
-@media (max-width: 720px) {
-  html[data-device="mobile"] .hero-profile-photo,
   .hero-profile-photo {
-    top: 175px !important;
-    right: 18% !important;
+    top: 125px !important;
+    right: 23% !important;
     bottom: auto !important;
+    left: auto !important;
     width: 100px !important;
-    aspect-ratio: 3 / 5;
+    height: 165px;
+    aspect-ratio: auto;
+    z-index: 8 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
     transform: none !important;
-    z-index: 5;
+    filter: none !important;
   }
 
-  html[data-device="mobile"] .hero-profile-photo.is-visible,
-  .hero-profile-photo.is-visible {
-    transform: none !important;
-  }
-
-  html[data-device="mobile"] .hero-japanese,
   .hero-japanese {
-    top: 185px !important;
-    right: 5% !important;
+    top: 130px !important;
+    right: 7% !important;
     bottom: auto !important;
-    writing-mode: vertical-rl !important;
-    text-orientation: upright !important;
-    white-space: nowrap !important;
+    left: auto !important;
+    z-index: 9 !important;
     font-size: 21px !important;
     line-height: 1.5 !important;
     letter-spacing: 2px !important;
+    writing-mode: vertical-rl !important;
+    text-orientation: upright !important;
+    white-space: nowrap !important;
     transform: none !important;
-    z-index: 6;
   }
 
-  /* Tombol tetap berada di bawah deskripsi */
   .hero-buttons {
     position: relative;
     z-index: 7;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-
-  .hero-buttons .primary-button,
-  .hero-buttons .game-button {
-    margin-top: 10px;
+    max-width: 100%;
   }
 }
-```
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-profile-photo {
+    transition: none;
+  }
+}
