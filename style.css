@@ -1631,25 +1631,55 @@ a:focus-visible {
     transform: translateY(-50%) scale(1);
   }
 
-  /* Tulisan Jepang: vertikal di kanan foto */
-  .hero-japanese {
-    position: absolute;
-    top: 59%;
-    right: 5%;
-    bottom: auto;
-    z-index: 6;
+   ```css
+/* ==========================================
+   FIX POSISI FOTO & OIKAWA — MOBILE
+========================================== */
 
-    writing-mode: vertical-rl;
-    text-orientation: upright;
-    white-space: nowrap;
-
-    font-size: 21px;
-    line-height: 1.5;
-    letter-spacing: 2px;
-
-    transform: none;
+@media (max-width: 720px) {
+  html[data-device="mobile"] .hero-profile-photo,
+  .hero-profile-photo {
+    top: 175px !important;
+    right: 18% !important;
+    bottom: auto !important;
+    width: 100px !important;
+    aspect-ratio: 3 / 5;
+    transform: none !important;
+    z-index: 5;
   }
 
-  /* Pertahankan warna dan kecerahan background */
+  html[data-device="mobile"] .hero-profile-photo.is-visible,
+  .hero-profile-photo.is-visible {
+    transform: none !important;
+  }
+
+  html[data-device="mobile"] .hero-japanese,
+  .hero-japanese {
+    top: 185px !important;
+    right: 5% !important;
+    bottom: auto !important;
+    writing-mode: vertical-rl !important;
+    text-orientation: upright !important;
+    white-space: nowrap !important;
+    font-size: 21px !important;
+    line-height: 1.5 !important;
+    letter-spacing: 2px !important;
+    transform: none !important;
+    z-index: 6;
+  }
+
+  /* Tombol tetap berada di bawah deskripsi */
+  .hero-buttons {
+    position: relative;
+    z-index: 7;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .hero-buttons .primary-button,
+  .hero-buttons .game-button {
+    margin-top: 10px;
+  }
 }
 ```
