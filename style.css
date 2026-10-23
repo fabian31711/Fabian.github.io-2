@@ -1414,9 +1414,38 @@ a:focus-visible {
   opacity: 0.35;
 }
 
-/* Tampilan HP */
+
+/* Tampilan HP — foto tidak menutupi tombol */
 @media (max-width: 720px) {
   .hero-profile-photo {
+    top: auto;
+    right: 6%;
+    bottom: 90px;
+    width: 100px;
+    aspect-ratio: 3 / 5;
+    transform: none;
+  }
+
+  .hero-profile-photo.is-visible {
+    transform: none;
+  }
+
+  .hero-japanese {
+    top: auto;
+    right: 2%;
+    bottom: 245px;
+    font-size: 20px;
+    line-height: 1.4;
+    transform: none;
+  }
+
+  .hero-buttons {
+    position: relative;
+    z-index: 5;
+    max-width: 100%;
+  }
+}
+
     top: 155px;
     right: 8%;
     width: clamp(160px, 21vw, 260px);
