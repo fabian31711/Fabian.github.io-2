@@ -1572,3 +1572,12 @@ a:focus-visible {
   }
 }
 ```
+
+.hero-image {
+  background-image: url("./Oikawa.jpg") !important;
+  background-position: center center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
